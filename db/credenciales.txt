@@ -1,0 +1,6 @@
+DB_USER: cinthiacm
+DB_PASSWORD: e7gQg3qS7FZzyFnz 
+
+
+instacia de mongodb
+mongosh "mongodb+srv://cluster-hola-booking.zhqz7zp.mongodb.net/" --apiVersion 1 --username cinthiacm
