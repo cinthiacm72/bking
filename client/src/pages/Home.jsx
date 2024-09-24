@@ -13,14 +13,14 @@ const Home = () => {
       <header className='main-header'>
         <Menu />
         <Search />
-        <HeaderSlider />
+        {/* <HeaderSlider /> */}
       </header>
 
       <main className='container-fluid-lg margin-top-x-lg'>
-        <FeaturedCities />
+        {/*        <FeaturedCities />
         <PropertiesType />
         <TopRankingCities />
-        <FeaturedProperties />
+        <FeaturedProperties /> */}
       </main>
       <Footer />
     </>
