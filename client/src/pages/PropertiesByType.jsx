@@ -10,6 +10,7 @@ import useFetch from "../hooks/useFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import InnerHeadline from "../components/InnerHeadline";
+import Footer from "../components/Footer";
 
 const PropertiesByType = () => {
   const location = useLocation();
