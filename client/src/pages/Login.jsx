@@ -77,16 +77,6 @@ const Login = () => {
             />
           </label>
           <InputPassToggleView handleChange={handleChange} />
-          {/*  <label>
-            Password:
-            <input
-              type='password'
-              placeholder='Enter your password'
-              id='password'
-              required
-              onChange={handleChange}
-            />
-          </label> */}
           <input
             type='submit'
             value='Login'
@@ -100,8 +90,6 @@ const Login = () => {
           )}
         </form>
       </main>
-      {/*      <MailList />
-      <Footer /> */}
     </>
   );
 };
