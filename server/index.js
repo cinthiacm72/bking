@@ -111,7 +111,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(port, () => {
+/* app.listen(port, () => {
   connect();
   console.log(`La api está funcionando en http://localhost:${port}`);
-});
+}); */
