@@ -11,6 +11,8 @@ const Login = () => {
     password: undefined,
   });
 
+  console.log(import.meta.env.VITE_CLIENT_URL);
+
   const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
