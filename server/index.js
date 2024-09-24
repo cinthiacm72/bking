@@ -24,14 +24,16 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: clientUrl,
+    origin: "*",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   })
 );
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", clientUrl);
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Methods",
     "GET,OPTIONS,PATCH,DELETE,POST,PUT"
