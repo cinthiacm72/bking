@@ -16,22 +16,37 @@ const app = express();
 
 dotenv.config();
 const port = PORT;
-const clienttUrl = CLIENT_URL;
+const clientUrl = CLIENT_URL;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", clienttUrl);
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
 app.use(cookieParser());
 
 app.use(express.json());
 
 app.use(
   cors({
-    origin: clienttUrl,
+    origin: clientUrl,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", clientUrl);
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+  next();
+});
 
 const connect = async () => {
   try {
