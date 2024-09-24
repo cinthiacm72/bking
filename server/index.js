@@ -19,6 +19,7 @@ const port = PORT;
 const clienttUrl = CLIENT_URL;
 
 app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", clienttUrl);
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
