@@ -415,61 +415,6 @@ a {
   width: 100px;
 }
 
-/*  Properties
-   ========================================================================== */
-/* 
-.property-item {
-  position: relative;
-  flex: 1;  igual tamaño para todos los flex-children 
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.property-item img {
-  width: 180px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: var(--border-radius-sm);
-  overflow: hidden;
-}
- */
-/*  Featured Properties
-   ========================================================================== */
-
-/* .featured-property-item {
-  position: relative;
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.featured-property-item img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: var(--border-radius-sm);
-  overflow: hidden;
-} */
-
-/*  Modal
-   ========================================================================== */
-/* .modal {
-  position: fixed;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.modal-container {
-  width: calc(100% - 2rem);
-  height: calc(100% - 2rem);
-  text-align: center;
-  background-color: hsl(var(--clr-light));
-}
-.modal-container img {
-  margin-inline: auto;
-} */
-
 /*  Buttons
    ========================================================================== */
 
