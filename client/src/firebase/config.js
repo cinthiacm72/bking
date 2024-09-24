@@ -10,12 +10,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAMz2wq3uga5r1nzTfh7zSq3EE1MtoC0ic",
-  authDomain: "booking-files-upload.firebaseapp.com",
-  projectId: "booking-files-upload",
-  storageBucket: "booking-files-upload.appspot.com",
-  messagingSenderId: "846419691754",
-  appId: "1:846419691754:web:6d9b0294a03789c0436f93",
+  apiKey: import.meta.env.FB_API_KEY,
+  authDomain: import.meta.env.FB_AUTH_DOMAIN,
+  projectId: import.meta.env.FB_PROJECT_ID,
+  storageBucket: import.meta.env.FB_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.FB_MESSAGING_SENDER_ID,
+  appId: import.meta.env.FB_APP_ID,
 };
 
 // Initialize Firebase
