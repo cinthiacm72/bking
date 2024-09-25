@@ -57,6 +57,10 @@ const connect = async () => {
   }
 };
 
+app.get("/", (req, res) => {
+  res.send("Hola Booking");
+});
+
 app.post("/register", authController.register);
 app.post("/login", authController.login);
 app.post("/logout", authController.logout);
