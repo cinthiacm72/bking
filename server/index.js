@@ -3,8 +3,6 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-//const { MongoClient } = require("mongodb");
-import { MongoClient } from "mongodb";
 import { PORT, CLIENT_URL } from "./config.js";
 import authController from "./controllers/authController.js";
 import usersController from "./controllers/usersController.js";
@@ -20,7 +18,8 @@ const app = express();
 
 dotenv.config();
 const port = PORT;
-const clientUrl = CLIENT_URL;
+/* const clientUrl = CLIENT_URL; */
+const clientUrl = "https://bking-client.vercel.app";
 
 app.use(cookieParser());
 
