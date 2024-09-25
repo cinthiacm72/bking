@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+//const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 import { PORT, CLIENT_URL } from "./config.js";
 import authController from "./controllers/authController.js";
 import usersController from "./controllers/usersController.js";
@@ -61,12 +63,12 @@ const connect = async () => {
 
 app.get("/", async (req, res) => {
   //res.send("Hola Booking");
-
   try {
     const cities = await Cities.find();
     return res.status(200).json(cities);
   } catch (err) {
     next(err);
+    console.log(err);
   }
 });
 
@@ -126,5 +128,6 @@ app.use((err, req, res, next) => {
 
 app.listen(port, () => {
   connect();
+
   console.log(`La api está funcionando en http://localhost:${port}`);
 });
