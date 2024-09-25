@@ -12,6 +12,8 @@ import citiesController from "./controllers/citiesController.js";
 import reservesController from "./controllers/reservesController.js";
 import verifyAuth from "./utils/verifyAuth.js";
 
+import Cities from "./models/Cities.js";
+
 const app = express();
 
 dotenv.config();
@@ -57,8 +59,15 @@ const connect = async () => {
   }
 };
 
-app.get("/", (req, res) => {
-  res.send("Hola Booking");
+app.get("/", async (req, res) => {
+  //res.send("Hola Booking");
+
+  try {
+    const cities = await Cities.find();
+    return res.status(200).json(cities);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.post("/register", authController.register);
