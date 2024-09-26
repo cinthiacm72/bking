@@ -18,8 +18,8 @@ const app = express();
 
 dotenv.config();
 const port = PORT;
-/* const clientUrl = CLIENT_URL; */
-const clientUrl = "https://bking-client.vercel.app";
+const clientUrl = CLIENT_URL;
+/* const clientUrl = "https://bking-client.vercel.app"; */
 
 app.use(cookieParser());
 
