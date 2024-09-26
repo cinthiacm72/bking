@@ -19,7 +19,7 @@ const app = express();
 dotenv.config();
 const port = PORT;
 const clientUrl = CLIENT_URL;
-/* const clientUrl = "https://bking-client.vercel.app"; */
+/* const clientUrl = "https://bking-client.vercel.app";  */
 
 app.use(cookieParser());
 
@@ -61,14 +61,14 @@ const connect = async () => {
 };
 
 app.get("/", async (req, res) => {
-  //res.send("Hola Booking");
-  try {
+  res.send("Hola Booking");
+  /*   try {
     const cities = await Cities.find();
     return res.status(200).json(cities);
   } catch (err) {
     next(err);
     console.log(err);
-  }
+  } */
 });
 
 app.post("/register", authController.register);
