@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB está conectado");
   } catch (err) {
     throw err;
@@ -61,14 +61,14 @@ const connect = async () => {
 };
 
 app.get("/", async (req, res) => {
-  res.send("Hola Booking");
-  /*   try {
+  /* res.send("Hola Booking"); */
+  try {
     const cities = await Cities.find();
     return res.status(200).json(cities);
   } catch (err) {
     next(err);
     console.log(err);
-  } */
+  }
 });
 
 app.post("/register", authController.register);
