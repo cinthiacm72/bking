@@ -21,10 +21,6 @@ const port = PORT;
 const clientUrl = CLIENT_URL;
 /* const clientUrl = "https://bking-client.vercel.app";  */
 
-app.use(cookieParser());
-
-app.use(express.json());
-
 app.use(
   cors({
     origin: clientUrl,
@@ -34,22 +30,18 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", clientUrl);
-  /*   res.header(
-    "Access-Control-Allow-Methods",
-    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-  ); */
-  /*  res.header(
-    "Access-Control-Allow-Headers",
-    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-  ); */
-  /*   res.header("Access-Control-Allow-Credentials", true);
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  } */
+  res.header("Access-Control-Allow-Credentials", true);
   next();
 });
+app.use(cookieParser());
+
+app.use(express.json());
+
+app.use(
+  cors({
+    origin: clientUrl,
+  })
+);
 
 const connect = async () => {
   try {
@@ -62,6 +54,14 @@ const connect = async () => {
 
 app.get("/", async (req, res) => {
   /* res.send("Hola Booking"); */
+
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB está conectado");
+  } catch (err) {
+    throw err;
+  }
+
   try {
     const cities = await Cities.find();
     return res.status(200).json(cities);
@@ -69,6 +69,7 @@ app.get("/", async (req, res) => {
     next(err);
     console.log(err);
   }
+  mongoose.connection.close();
 });
 
 app.post("/register", authController.register);
@@ -103,7 +104,7 @@ app.delete(
 app.get("/rooms/:id", roomsController.getRoom);
 app.get("/rooms", roomsController.getAllRooms);
 app.post("/reserves", reservesController.createReserve);
-app.get("/reserves/:id", reservesController.getUserReserves);
+app.get("/reserves/:userid", reservesController.getUserReserves);
 app.get("/reserves", reservesController.getAllReservations);
 app.delete("/reserves/delete/:id", reservesController.deleteReserve);
 // Cities
