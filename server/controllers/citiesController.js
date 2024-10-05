@@ -1,5 +1,6 @@
 import Hotels from "../models/Hotels.js";
 import Cities from "../models/Cities.js";
+import mongoose from "mongoose";
 
 const createCity = async (req, res, next) => {
   const newCity = new Cities(req.body);
@@ -33,14 +34,29 @@ const deleteCity = async (req, res, next) => {
 
 const getAllCities = async (req, res, next) => {
   try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB está conectado");
+  } catch (err) {
+    throw err;
+  }
+
+  try {
     const cities = await Cities.find();
     return res.status(200).json(cities);
   } catch (err) {
     next(err);
   }
+  mongoose.connection.close();
 };
 
 const getAllCitiesFeatured = async (req, res, next) => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB está conectado");
+  } catch (err) {
+    throw err;
+  }
+
   try {
     const cities = await Hotels.aggregate([
       { $project: { _id: 0, city: 1, cheapestPrice: 1 } },
@@ -75,6 +91,8 @@ const getAllCitiesFeatured = async (req, res, next) => {
     console.log(err);
     next(err);
   }
+
+  mongoose.connection.close();
 };
 
 export default {
