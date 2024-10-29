@@ -14,6 +14,8 @@ import verifyAuth from "./utils/verifyAuth.js";
 
 import Cities from "./models/Cities.js";
 
+import { connectToDatabase } from "./utils/db.js";
+
 const app = express();
 
 dotenv.config();
@@ -43,20 +45,19 @@ app.use(
   })
 );
 
-const connect = async () => {
+/* const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB está conectado");
   } catch (err) {
     throw err;
   }
-};
+}; */
 
-app.get("/", async (req, res) => {
-  /* res.send("Hola Booking"); */
-
+/* app.get("/", async (req, res) => {
+  res.send("Hola Booking"); 
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await connectToDatabase();
     console.log("MongoDB está conectado");
   } catch (err) {
     throw err;
@@ -69,9 +70,8 @@ app.get("/", async (req, res) => {
     next(err);
     console.log(err);
   }
-  mongoose.connection.close();
 });
-
+ */
 app.post("/register", authController.register);
 app.post("/login", authController.login);
 app.post("/logout", authController.logout);
@@ -126,8 +126,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(port, () => {
+/* app.listen(port, () => {
   connect();
 
   console.log(`La api está funcionando en http://localhost:${port}`);
+}); */
+
+app.listen(port, () => {
+  console.log(`Servidor ejecutándose en el puerto ${PORT}`);
 });
