@@ -1,8 +1,10 @@
 import Users from "../models/Users.js";
+import { connectToDatabase } from "../utils/db.js";
 
 /* Update */
 const updateUser = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const updatedUser = await Users.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
@@ -18,6 +20,7 @@ const updateUser = async (req, res, next) => {
 /* Delete */
 const deleteUser = async (req, res, next) => {
   try {
+    await connectToDatabase();
     await Users.findByIdAndDelete(req.params.id);
     res.status(200).json("User has been deleted.");
   } catch (err) {
@@ -28,6 +31,7 @@ const deleteUser = async (req, res, next) => {
 /* Get */
 const getUser = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const user = await Users.findById(req.params.id);
     res.status(200).json(user);
   } catch (error) {
@@ -41,6 +45,7 @@ const getAllUsers = (req, res) => {
 
   const allUsers = async () => {
     try {
+      await connectToDatabase();
       const users = await Users.find();
       res.status(200).json(users);
     } catch (err) {

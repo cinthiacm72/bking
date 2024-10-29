@@ -48,12 +48,16 @@ const User = () => {
     }
   }, [hotelId]);
 
+  let userid;
+
   if (user._id === null) {
     navigate("/");
   }
 
+  userid = user._id;
+
   const { data, loading, error } = useFetch(
-    import.meta.env.VITE_BACKEND_URL + `/reserves/${user._id}`
+    import.meta.env.VITE_BACKEND_URL + `/reserves/${userid}`
   );
 
   const [reservationsList, setReservationsList] = useState(data);

@@ -2,10 +2,12 @@ import bcrypt from "bcryptjs";
 import Users from "../models/Users.js";
 import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+import { connectToDatabase } from "../utils/db.js";
 
 /* Register */
 const register = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -28,6 +30,7 @@ const register = async (req, res, next) => {
 /* Login */
 const login = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const user = await Users.findOne({ username: req.body.username });
     if (!user) return next(createError(400, "User or password not found!"));
 

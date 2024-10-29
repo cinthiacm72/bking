@@ -39,6 +39,12 @@ const Hotel = () => {
 
   const { user } = useContext(AuthContext);
 
+  let userId;
+
+  if (user) {
+    userId = user._id;
+  }
+
   const navigate = useNavigate();
 
   const { data, loading, error } = useFetch(
@@ -116,12 +122,6 @@ const Hotel = () => {
   const [hotelId, setHotelId] = useState(hotelSelectedId);
 
   const [roomId, setRoomId] = useState("");
-
-  let userId;
-
-  if (!user === null) {
-    userId = user._id;
-  }
 
   const { dispatch } = useContext(ReserveContext);
 

@@ -1,5 +1,6 @@
 import Hotels from "../models/Hotels.js";
 import Rooms from "../models/Rooms.js";
+import { connectToDatabase } from "../utils/db.js";
 import mongoose from "mongoose";
 
 /* Create */
@@ -9,6 +10,7 @@ const createRoom = async (req, res, next) => {
   const newRoom = new Rooms(req.body);
 
   try {
+    await connectToDatabase();
     const savedRoom = await newRoom.save();
     try {
       await Hotels.findByIdAndUpdate(hotelId, {
@@ -27,6 +29,7 @@ const createRoom = async (req, res, next) => {
 /* Update */
 const updateRoom = async (req, res) => {
   try {
+    await connectToDatabase();
     const updatedRoom = await Rooms.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
@@ -42,6 +45,7 @@ const updateRoom = async (req, res) => {
 /* Update updateRoomAvailability*/
 const updateRoomAvailability = async (req, res, next) => {
   try {
+    await connectToDatabase();
     await Rooms.updateOne(
       { "roomNumbers._id": req.params.roomid },
       {
@@ -61,6 +65,7 @@ const updateRoomAvailability = async (req, res, next) => {
 const deleteRoomAvailability = async (req, res, next) => {
   // console.log({ "roomNumbers._id": req.params.roomid });
   try {
+    await connectToDatabase();
     await Rooms.updateOne(
       { "roomNumbers._id": req.params.roomid },
       {
@@ -80,6 +85,7 @@ const deleteRoomAvailability = async (req, res, next) => {
 const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   try {
+    await connectToDatabase();
     await Hotels.findByIdAndUpdate(hotelId, {
       $pull: { rooms: req.params.id },
     });
@@ -97,6 +103,7 @@ const deleteRoom = async (req, res, next) => {
 /* Get */
 const getRoom = async (req, res) => {
   try {
+    await connectToDatabase();
     const room = await Rooms.findById(req.params.id);
     res.status(200).json(room);
   } catch (err) {
@@ -107,6 +114,7 @@ const getRoom = async (req, res) => {
 /* Get All */
 const getAllRooms = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const rooms = await Rooms.find();
     res.status(200).json(rooms);
   } catch (err) {
