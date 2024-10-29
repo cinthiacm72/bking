@@ -57,6 +57,7 @@ const getHotel = async (req, res, next) => {
 /* Get properties by type */
 const getHotelsByType = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const properties = await Hotels.find({ type: req.params.type });
 
     return res.status(200).json(properties);
@@ -68,6 +69,7 @@ const getHotelsByType = async (req, res, next) => {
 /* All Properties Type */
 const getAllHotelsyByTypes = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const { max, min, featured, limit, ...others } = req.query;
 
     const allProperties = await Hotels.find({
@@ -83,6 +85,7 @@ const getAllHotelsyByTypes = async (req, res, next) => {
 
 const getAllHotels = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const { max, min, featured, limit, ...others } = req.query;
     const hotels = await Hotels.find({
       ...others,
@@ -100,6 +103,7 @@ const getAllHotels = async (req, res, next) => {
 const countByCity = async (req, res, next) => {
   const cities = req.query.cities.split(",");
   try {
+    await connectToDatabase();
     const list = await Promise.all(
       cities.map((city) => {
         return Hotels.countDocuments({ city: city });
@@ -136,6 +140,7 @@ const countByType = async (req, res, next) => {
 /* Get Hotel Rooms */
 const getHotelRooms = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const hotel = await Hotels.findById(req.params.hotelid);
     const list = await Promise.all(
       hotel.rooms.map((room) => {

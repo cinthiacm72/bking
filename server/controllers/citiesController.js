@@ -7,6 +7,7 @@ const createCity = async (req, res, next) => {
   const newCity = new Cities(req.body);
 
   try {
+    await connectToDatabase();
     const savedCity = await newCity.save();
     /*  res.status(200).json(savedCity); */
     res.status(200).json("City has been created.");
@@ -17,6 +18,7 @@ const createCity = async (req, res, next) => {
 
 const getCity = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const user = await Cities.findById(req.params.id);
     res.status(200).json(user);
   } catch (error) {
@@ -26,6 +28,7 @@ const getCity = async (req, res, next) => {
 
 const deleteCity = async (req, res, next) => {
   try {
+    await connectToDatabase();
     await Cities.findByIdAndDelete(req.params.id);
     res.status(200).json("City has been deleted");
   } catch (err) {
@@ -60,20 +63,6 @@ const getAllCitiesFeatured = async (req, res, next) => {
       { $limit: 12 },
       { $sort: { count: -1 } },
     ]);
-
-    /*  const cities = await Hotels.aggregate([
-      {
-        $group: {
-          _id: {
-            city: "$city",
-          },
-
-          count: { $sum: 1 },
-        },
-      },
-
-      { $sort: { count: -1 } },
-    ]); */
 
     res.status(200).json(cities);
   } catch (err) {

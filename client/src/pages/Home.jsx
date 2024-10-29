@@ -19,8 +19,8 @@ const Home = () => {
       <main className='container-fluid-lg margin-top-x-lg'>
         <FeaturedCities />
         <PropertiesType />
-        {/* <TopRankingCities />
-        <FeaturedProperties /> */}
+        <TopRankingCities />
+        <FeaturedProperties />
       </main>
       <Footer />
     </>
