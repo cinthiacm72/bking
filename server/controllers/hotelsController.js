@@ -1,7 +1,9 @@
 import Hotels from "../models/Hotels.js";
 import Rooms from "../models/Rooms.js";
+import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
+import { connectToDatabase } from "../utils/db.js";
 
 /* Create */
 const createHotel = async (req, res, next) => {
@@ -112,6 +114,7 @@ const countByCity = async (req, res, next) => {
 /* Count by Type */
 const countByType = async (req, res, next) => {
   try {
+    await connectToDatabase();
     const hotelsCount = await Hotels.countDocuments({ type: "hotel" });
     const apartmentsCount = await Hotels.countDocuments({ type: "apartment" });
     const resortsCount = await Hotels.countDocuments({ type: "resort" });
