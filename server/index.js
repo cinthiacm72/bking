@@ -25,7 +25,7 @@ console.log(clientUrl);
 /* const [url1, url2] = clientUrl;
 console.log(url1);
 console.log(url2); 
-.split(",") */
+.split(",")  git push --force*/
 
 app.use(
   cors({
