@@ -24,7 +24,7 @@ dotenv.config();
 const port = PORT;
 const clientUrl = [
   "https://bking-client.vercel.app",
-  "https://bking-admin.vercel.app/",
+  "https://bking-admin.vercel.app",
 ];
 console.log(clientUrl);
 /* const [url1, url2] = clientUrl;
