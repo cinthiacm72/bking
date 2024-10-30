@@ -20,8 +20,12 @@ const app = express();
 
 dotenv.config();
 const port = PORT;
-const clientUrl = CLIENT_URL;
-/* const clientUrl = "https://bking-client.vercel.app";  */
+const clientUrl = CLIENT_URL.split(",");
+console.log(clientUrl);
+/* const [url1, url2] = clientUrl;
+console.log(url1);
+console.log(url2); 
+.split(",")*/
 
 app.use(
   cors({
