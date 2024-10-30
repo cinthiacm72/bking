@@ -3,7 +3,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { PORT, CLIENT_URL } from "./config.js";
+/* import { PORT, CLIENT_URL } from "./config.js";  */
+import { PORT } from "./config.js";
+
 import authController from "./controllers/authController.js";
 import usersController from "./controllers/usersController.js";
 import hotelsController from "./controllers/hotelsController.js";
@@ -20,7 +22,10 @@ const app = express();
 
 dotenv.config();
 const port = PORT;
-const clientUrl = CLIENT_URL.split(",");
+const clientUrl = [
+  "https://bking-client.vercel.app",
+  "https://bking-admin.vercel.app/",
+];
 console.log(clientUrl);
 /* const [url1, url2] = clientUrl;
 console.log(url1);
