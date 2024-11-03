@@ -90,7 +90,7 @@ const Footer = () => {
                   type='email'
                   placeholder='your-email@domain.com'
                   id='email'
-                  size='22'
+                  size='15'
                 />
 
                 <input
