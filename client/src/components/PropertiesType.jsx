@@ -70,14 +70,9 @@ const PropertiesType = () => {
                 key={i}
                 onClick={() => setPropertyType(data[i]?.type)}>
                 <header>
-                  <h3 className='margin-top-x-sm caps bold'>{data[i]?.type}</h3>
+                  <h3 className='caps bold'>{data[i]?.type}</h3>
 
-                  <p
-                    style={
-                      {
-                        /* lineHeight: "20px", */
-                      }
-                    }>
+                  <p class='margin-bottom-x-sm fs-small '>
                     {`${data[i]?.count} ${data[i]?.type}s`}
                   </p>
 
@@ -90,7 +85,7 @@ const PropertiesType = () => {
                   </button> */}
                 </header>
 
-                <div className='property-item-img'>
+                <div className='property-item-img margin-bottom-sm'>
                   <img src={images[i]} alt='Property image' />
                 </div>
               </li>
