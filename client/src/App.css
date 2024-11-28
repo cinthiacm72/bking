@@ -887,7 +887,31 @@ input {
 .modal-controllers {
   display: flex;
   align-items: center;
-  gap: 100px;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-controllers button {
+  position: absolute;
+  top: 50%;
+}
+
+.modal-controllers .modal-prev-button {
+  left: 0;
+}
+
+.modal-controllers .modal-next-button {
+  right: 0;
+}
+
+@media (min-width: 750px) {
+  .modal-controllers .modal-prev-button {
+    margin-inline-start: 1rem;
+  }
+
+  .modal-controllers .modal-next-button {
+    margin-inline-end: 1rem;
+  }
 }
 
 .modal-close-button {
