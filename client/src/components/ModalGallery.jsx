@@ -27,7 +27,7 @@ const ModalGallery = ({
           <img src='/assets/loader.svg' alt='Loader image' />
         )}
 
-        <div style={{ placeSelf: "end center" }} className='modal-controllers'>
+        <div className='modal-controllers'>
           <button
             className='modal-prev-button button-sm button-sm-dark'
             onClick={() => handleArrows("prev")}>
@@ -38,7 +38,7 @@ const ModalGallery = ({
             {imageGallery.length} / {imageIndex}
           </p>
           <button
-            className='button-sm button-sm-dark'
+            className='modal-next-button button-sm button-sm-dark'
             onClick={() => handleArrows("next")}>
             <FontAwesomeIcon icon={faArrowRight} />
             <span className='visually-hidden'>Next image</span>
